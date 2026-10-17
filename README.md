@@ -1,3 +1,4 @@
+
 # Xqeria Dev V1.1 — FiveM Discord Yönetim Botu
 
 > **Yapımcı: Xqeria** · **Discord: [discord.gg/bdfd](https://discord.gg/bdfd)**
@@ -161,3 +162,29 @@ iddia edemezsiniz.
 - **Geliştirici:** Xqeria
 - **Discord:** [discord.gg/bdfd](https://discord.gg/bdfd)
 - **Sürüm imzası:** `Xqeria Dev V1.1`
+
+- ## Görüntüler
+
+- - **Yetki Terfi**
+<img width="671" height="475" alt="yetkiterfi" src="https://github.com/user-attachments/assets/7decc7dd-c84f-4f95-a74f-bfeb08374a72" />
+
+- **Yardım Menü**
+<img width="431" height="314" alt="yardım" src="https://github.com/user-attachments/assets/65a837d0-80a1-427f-a98b-0f54ba7324eb" />
+
+- **Ticket Panwl**
+<img width="362" height="400" alt="ticket" src="https://github.com/user-attachments/assets/fba607ba-e480-4252-a4cc-cc9a71dc9136" />
+
+- **Özel Oda Panel**
+<img width="422" height="481" alt="özeloda" src="https://github.com/user-attachments/assets/140a22a5-5216-49aa-af8c-b89a3467f395" />
+
+- **Örnek Log**
+<img width="332" height="285" alt="log" src="https://github.com/user-attachments/assets/3a5ad6de-0d87-430a-b7bf-83b12fb2bc18" />
+
+- **Kurulum Paneli**
+<img width="668" height="407" alt="kruulum" src="https://github.com/user-attachments/assets/a406a60c-e28c-4371-82a7-63bf26f290f0" />
+
+- **Kayıt Paneli**
+<img width="449" height="285" alt="kayıt" src="https://github.com/user-attachments/assets/a98c68a9-1fb7-4edf-a95d-7b79818fb4dc" />
+
+- **Guard Paneli**
+<img width="547" height="485" alt="guard" src="https://github.com/user-attachments/assets/dd69f8ef-ff37-4483-baba-380a091686aa" />
