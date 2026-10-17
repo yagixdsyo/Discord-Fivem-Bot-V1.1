@@ -1,0 +1,9 @@
+# Dosya sonlarini LF olarak sabitle (Docker/Linux ile uyum)
+* text=auto eol=lf
+
+# Ikili dosyalar
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary

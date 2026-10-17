@@ -1,0 +1,62 @@
+# VPS + Docker kurulumu: MongoDB + Redis + Bot
+# Botu baslatmak icin once .env.example'i .env olarak kopyalayip doldurun.
+services:
+  mongo:
+    image: mongo:7
+    container_name: fivem-bot-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-botuser}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS:-botpass}
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  redis:
+    image: redis:7-alpine
+    container_name: fivem-bot-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  bot:
+    build: .
+    container_name: fivem-bot
+    # Cikis kodu politikasi (owner komutlari):
+    #   !bot-kapat   -> zarif kapanis + exit 0 -> konteyner KAPALI kalir
+    #   !bot-restart -> zarif kapanis + exit 1 -> supervisor yeniden baslatir
+    #   beklenmedik cokme -> exit 1 -> yeniden baslatilir
+    restart: on-failure
+    env_file: .env
+    environment:
+      # Konteyner ici servis adlari; .env icindeki localhost degerlerini gecersiz kilar
+      MONGO_URI: ${MONGO_URI_IN_DOCKER:-mongodb://${MONGO_ROOT_USER:-botuser}:${MONGO_ROOT_PASS:-botpass}@mongo:27017/?authSource=admin}
+      REDIS_URL: ${REDIS_URL_IN_DOCKER:-redis://redis:6379}
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "${HEALTH_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  mongo_data:
+  redis_data:

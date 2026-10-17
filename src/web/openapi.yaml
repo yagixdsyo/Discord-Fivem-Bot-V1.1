@@ -1,0 +1,103 @@
+# Xqeria Dev V1.1 - discord.gg/bdfd
+openapi: 3.0.3
+info:
+  title: FiveM Yonetim Botu Legal-Site API Sozlesmesi
+  version: 1.0.0
+  description: >
+    Bot (V2/slash Commands) ile opsiyonel legal-site arasinda çift yonlu mesai senkronizasyonu,
+    kullanici eslestirme, presence, basvuru/rol/puan ve transcript yukleme arayuzu.
+paths:
+  /health:
+    get:
+      summary: Site sagligi
+      responses:
+        '200': { description: Kapali site hazards error}
+  /accounts/create:
+    post:
+      summary: Kullaniciya site hesabi olustur veya bagla
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [discord_id, guild_id]
+              properties:
+                discord_id: { type: string }
+                guild_id: { type: string }
+                requested_by: { type: string }
+      responses:
+        '200': { description: Hesap olusturuldu }
+  /accounts/by-discord:
+    get:
+      summary: Discord ID ile site hesabi sorgula
+      parameters:
+        - in: query
+          name: discord_id
+          schema: { type: string }
+          required: true
+      responses:
+        '200': { description: Hesap bulundu }
+  /presence/query:
+    get:
+      summary: Oyuncunun site/FiveM presence bilgisini sorgula
+      parameters:
+        - in: query
+          name: discord_id
+          schema: { type: string }
+          required: true
+      responses:
+        '200': { description: Presence bilgisi }
+  /mesai/sync:
+    post:
+      summary: Mesai kayitlarini site ile senkronize et
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                guild_id: { type: string }
+                user_id: { type: string }
+                mode: { type: string, enum: [push, pull, full] }
+      responses:
+        '200': { description: Senkron tamamlandi }
+  /applications/sync:
+    post:
+      summary: Basvuru/whitelist/ekip basvuru bilgilerini siteye gonder
+      responses:
+        '200': { description: Kayit guncellendi }
+  /ranks:
+    get:
+      summary: Kurali site rutbe-rol eșlemesini oku
+      parameters:
+        - in: query
+          name: guild_id
+          schema: { type: string }
+          required: true
+      responses:
+        '200': { description: Eslestirmeler }
+  /upload/transcript:
+    post:
+      summary: Ticket transcript HTML dosyası yukle
+      responses:
+        '200': { description: Yukleme tokeni/link }
+  /upload/video:
+    post:
+      summary: Ticket icin yuksek boyutlu video yukle
+      responses:
+        '200': { description: Yukleme sonucu }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    SiteAccount:
+      type: object
+      properties:
+        account_id: { type: string }
+        discord_id: { type: string }
+        site_username: { type: string }
+        created_at: { type: string, format: date-time }

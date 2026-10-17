@@ -1,0 +1,38 @@
+{
+  "name": "fivem-yonetim-botu",
+  "version": "1.1.0",
+  "description": "FiveM sunuculari icin cok modullu Discord yonetim botu (Components V2) - Xqeria Dev V1.1",
+  "private": true,
+  "author": "Xqeria (discord.gg/bdfd)",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://discord.gg/bdfd",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate": "node src/db/migrate.js",
+    "migrate:down": "node src/db/migrate.js --down",
+    "dev:mongo": "node scripts/dev-mongo.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.11",
+    "bullmq": "6.3.15",
+    "discord.js": "14.27.0",
+    "dotenv": "18.0.8",
+    "ioredis": "6.0.0",
+    "mongodb": "7.7.0",
+    "pino": "10.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.3.0",
+    "pino-pretty": "13.2.0",
+    "vitest": "5.0.4"
+  }
+}

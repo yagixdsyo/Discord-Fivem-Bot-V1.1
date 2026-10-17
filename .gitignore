@@ -1,0 +1,24 @@
+# Bagimliliklar
+node_modules/
+
+# Ortam degiskenleri (SIRLAR REPOYA GIRMEZ)
+.env
+.env.local
+.env.*.local
+
+# Loglar ve gecici veriler
+logs/
+*.log
+data/
+tmp/
+
+# Test / kapsam
+coverage/
+
+# Arac yapilandirmasi (repoda paylasilmaz)
+opencode.json
+/plan.md
+
+# Isletim sistemi
+.DS_Store
+Thumbs.db
